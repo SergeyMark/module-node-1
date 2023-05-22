@@ -34,7 +34,7 @@ async function addContact(name, email, phone) {
         obj.push(newObj)
 
     try {
-        fs.writeFile(contactsPath, JSON.stringify(obj, null, 2))
+        await fs.writeFile(contactsPath, JSON.stringify(obj, null, 2))
     } catch (error) {
         return error
     }    
@@ -44,7 +44,7 @@ async function removeContact(contactId) {
     const remove = await fs.readFile(contactsPath)      
         
         try {
-            fs.writeFile(contactsPath, JSON.stringify(JSON.parse(remove).filter(
+            await fs.writeFile(contactsPath, JSON.stringify(JSON.parse(remove).filter(
                 el => {     
                     return el.id !== contactId
                 }
